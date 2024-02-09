@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, StyleSheet } from "react-native";
 
 export default function Greet({ name }) {
   const [text, setText] = useState(name);
@@ -14,11 +14,27 @@ export default function Greet({ name }) {
     setText(curr);
   };
   return (
-    <View>
-      <Button title="press" onPress={handleSetText} />
-      <Text>
-        hello , {text}
-      </Text>
+    <View style={styles.container}>
+      <View style={[styles.box,styles.box1]}>
+        <Text>box1</Text>
+      </View>
+      <View style={[styles.box,styles.box2]}>
+        <Text>box2</Text>
+      </View>
     </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {backgroundColor:"pink"},
+  box:{
+    height:100,
+    width:200,
+    margin:5
+  },
+  box1: {
+    backgroundColor: "green",
+  },
+  box2: {
+    backgroundColor: "red"
+  }
+});
