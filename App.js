@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React, { useState } from "react";
+import {
+  StatusBar,
+  ActivityIndicator,
+  Text,
+  View,
+  Button,
+  Modal,
+  Alert
+} from "react-native";
+import Greet from "./components/Greet";
+const logoImage = require("./assets/adaptive-icon.png");
 export default function App() {
+  const [isVisible, setIsVisible] = useState(false);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{ flex: 1, backgroundColor: "plum", paddingTop: 10 }}>
+      <StatusBar/>
+      <Greet name ={"Dilip"} />
+      <Greet name ={"Dilip"} />
+      <Greet name ={"Dilip"} />
+      <Greet name ={"Dilip"} />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
