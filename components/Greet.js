@@ -15,24 +15,32 @@ export default function Greet({ name }) {
   };
   return (
     <View style={styles.container}>
-      <View style={[styles.box,styles.box1]}>
+      <View style={[styles.box, styles.box1]}>
         <Text>box1</Text>
       </View>
-      <View style={[styles.box,styles.box2]}>
+      <View style={[styles.box, styles.box2]}>
         <Text>box2</Text>
       </View>
     </View>
   );
 }
 const styles = StyleSheet.create({
-  container: {backgroundColor:"pink"},
-  box:{
-    height:100,
-    width:200,
-    margin:5
+  container: {
+    backgroundColor: "pink",
+    borderWidth: 2,
+    borderColor: "purple",
+    borderStyle: "solid",
+  },
+  box: {
+    height: "25%",
+    width: "25%",
+    margin: 5,
+    borderWidth: 2,
+    borderColor: "purple",
+    borderStyle: "solid"
   },
   box1: {
-    backgroundColor: "green",
+    backgroundColor: "green"
   },
   box2: {
     backgroundColor: "red"
