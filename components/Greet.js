@@ -1,10 +1,24 @@
-import React from 'react'
-import { View ,Text} from 'react-native'
+import React, { useState } from "react";
+import { View, Text, Button } from "react-native";
 
-export default function Greet({name}){
-    return (
-        <View>
-            <Text>hello , {name}</Text>
-        </View>
-    )
+export default function Greet({ name }) {
+  const [text, setText] = useState(name);
+  const handleSetText = () => {
+    let length = 4;
+    let str = "qwertyuioplkjhgfdsazxcvbnm";
+    let curr = "";
+    for (let i = 0; i < length; i++) {
+      let val = Math.floor(Math.random() * length);
+      curr += str[val];
+    }
+    setText(curr);
+  };
+  return (
+    <View>
+      <Button title="press" onPress={handleSetText} />
+      <Text>
+        hello , {text}
+      </Text>
+    </View>
+  );
 }
