@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
   form: {
     backgroundColor: "white",
-    padding: 20,
+    padding: 18,
     borderRadius: 10,
     margin: 20,
     shadowColor: "black",
@@ -165,8 +165,8 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 50,
-    borderColor: "black",
-    borderWidth: 1,
+    borderColor: "gray",
+    borderWidth: 1.5,
     marginBottom: 10,
     borderRadius: 5,
     padding: 10
