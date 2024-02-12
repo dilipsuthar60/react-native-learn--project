@@ -18,6 +18,10 @@ export default function App() {
     userName: "",
     password: ""
   });
+  const [error, setError] = useState({
+    userName: "",
+    password: ""
+  });
   const charmanderData = {
     name: "Charmander",
     image: require("./assets/charmander.png"),
@@ -53,49 +57,65 @@ export default function App() {
     moves: ["Quick Attack", "Thunderbolt", "Tail Whip", "Growl"],
     weaknesses: ["Ground"]
   };
+  const formValidation = () => {
+    let error = {
+      userName: "",
+      password: ""
+    };
+    if (!form.userName) error.userName = "user name is required.";
+    if (!form.password) error.password = "password is required.";
+    setError(error);
+  };
   const handleSubmit = () => {
     console.log(form);
-    setForm({
-      userName:"",
-      password:""
-    })
+    formValidation()
   };
 
   return (
     <ScrollView>
-    <SafeAreaView style={styles.container}>
-      <View style={styles.form}>
-        <Text style={styles.label}>Username</Text>
-        <TextInput
-        value={form.userName}
-          style={styles.input}
-          placeholder="Enter your Username"
-          onChangeText={text => {
-            setForm({ ...form, userName: text });
-          }}
-        />
-        <Text style={styles.label}>Password</Text>
-        <TextInput
-        value={form.password}
-          style={styles.input}
-          placeholder="Enter your Password"
-          secureTextEntry
-          onChangeText={(text)=>{
-            setForm({ ...form, password: text });
-          }}
-        />
-        <Button
-          title="Login"
-          onPress={() => {
-            handleSubmit();
-          }}
-        />
-      </View>
-      <Greet {...charmanderData} />
-      <Greet {...squirtleData} />
-      <Greet {...pikachuData} />
-      <Greet {...bulbasaurData} />
-      <FlatList
+      <SafeAreaView style={styles.container}>
+        <View style={styles.form}>
+          <Text style={styles.label}>Username</Text>
+          <TextInput
+            value={form.userName}
+            style={styles.input}
+            placeholder="Enter your Username"
+            onChangeText={text => {
+              setForm({ ...form, userName: text });
+            }}
+          />
+          {error.userName
+            ? <Text style={styles.error}>
+                {error.userName}
+              </Text>
+            : null}
+          <Text style={styles.label}>Password</Text>
+          <TextInput
+            value={form.password}
+            style={styles.input}
+            placeholder="Enter your Password"
+            secureTextEntry
+            onChangeText={text => {
+              setForm({ ...form, password: text });
+            }}
+          />
+          {error.password
+            ? <Text style={styles.error}>
+                {error.password}
+              </Text>
+            : null}
+          <Button
+            title="Login"
+            onPress={() => {
+              handleSubmit();
+            }}
+          />
+        </View>
+        <Greet {...charmanderData} />
+        <Greet {...squirtleData} />
+        <Greet {...pikachuData} />
+        <Greet {...bulbasaurData} />
+        <FlatList
           data={pokemonList}
           renderItem={({ item }) => {
             return (
@@ -116,7 +136,7 @@ export default function App() {
             );
           }}
         />
-    </SafeAreaView>
+      </SafeAreaView>
     </ScrollView>
   );
 }
@@ -160,15 +180,18 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    marginBottom:3,
+    marginBottom: 3,
     fontWeight: "bold"
   },
   input: {
     height: 50,
     borderColor: "gray",
     borderWidth: 1.5,
-    marginBottom: 10,
+    marginBottom: 5,
     borderRadius: 5,
     padding: 10
+  },
+  error:{
+    color:"red"
   }
 });
