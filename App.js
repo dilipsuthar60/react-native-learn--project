@@ -7,13 +7,17 @@ import {
   ScrollView,
   Pressable,
   FlatList,
-  TextInput
+  TextInput,
+  Button
 } from "react-native";
 import Greet from "./components/Greet";
 import pokemonList from "./data.json";
 const logoImage = require("./assets/adaptive-icon.png");
 export default function App() {
-  const [name, setName] = useState("");
+  const [form, setForm] = useState({
+    userName: "",
+    password: ""
+  });
   const charmanderData = {
     name: "Charmander",
     image: require("./assets/charmander.png"),
@@ -49,20 +53,49 @@ export default function App() {
     moves: ["Quick Attack", "Thunderbolt", "Tail Whip", "Growl"],
     weaknesses: ["Ground"]
   };
+  const handleSubmit = () => {
+    console.log(form);
+    setForm({
+      userName:"",
+      password:""
+    })
+  };
+
   return (
     <ScrollView>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.form}>
-          <Text style={styles.label} >Username</Text>
-          <TextInput style={styles.input} placeholder="Enter your Username"/>
-          <Text style={styles.label}>Password</Text>
-          <TextInput style={styles.input} placeholder="Enter your Password"  secureTextEntry/>
-        </View>
-        <Greet {...charmanderData} />
-        <Greet {...squirtleData} />
-        <Greet {...pikachuData} />
-        <Greet {...bulbasaurData} />
-        <FlatList
+    <SafeAreaView style={styles.container}>
+      <View style={styles.form}>
+        <Text style={styles.label}>Username</Text>
+        <TextInput
+        value={form.userName}
+          style={styles.input}
+          placeholder="Enter your Username"
+          onChangeText={text => {
+            setForm({ ...form, userName: text });
+          }}
+        />
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+        value={form.password}
+          style={styles.input}
+          placeholder="Enter your Password"
+          secureTextEntry
+          onChangeText={(text)=>{
+            setForm({ ...form, password: text });
+          }}
+        />
+        <Button
+          title="Login"
+          onPress={() => {
+            handleSubmit();
+          }}
+        />
+      </View>
+      <Greet {...charmanderData} />
+      <Greet {...squirtleData} />
+      <Greet {...pikachuData} />
+      <Greet {...bulbasaurData} />
+      <FlatList
           data={pokemonList}
           renderItem={({ item }) => {
             return (
@@ -83,7 +116,7 @@ export default function App() {
             );
           }}
         />
-      </SafeAreaView>
+    </SafeAreaView>
     </ScrollView>
   );
 }
@@ -113,29 +146,29 @@ const styles = StyleSheet.create({
   itemType: {
     fontSize: 16
   },
-  form:{
-    backgroundColor:"white",
-    padding:20,
-    borderRadius:10,
-    margin:20,
-    shadowColor:"black",
-    shadowOffset:{
-      width:0,
-      height:2
+  form: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    margin: 20,
+    shadowColor: "black",
+    shadowOffset: {
+      width: 0,
+      height: 2
     },
-    elevation:5
+    elevation: 5
   },
-  label:{
-    fontSize:16,
-    marginBottom:5,
-    fontWeight:"bold"
+  label: {
+    fontSize: 16,
+    marginBottom:3,
+    fontWeight: "bold"
   },
-  input:{
-    height:50,
-    borderColor:"black",
-    borderWidth:1,
+  input: {
+    height: 50,
+    borderColor: "black",
+    borderWidth: 1,
     marginBottom: 10,
     borderRadius: 5,
-    padding:10
+    padding: 10
   }
 });
