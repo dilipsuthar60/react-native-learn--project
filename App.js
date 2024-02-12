@@ -58,17 +58,18 @@ export default function App() {
     weaknesses: ["Ground"]
   };
   const formValidation = () => {
-    let error = {
-      userName: "",
-      password: ""
-    };
+    let error = {};
     if (!form.userName) error.userName = "user name is required.";
     if (!form.password) error.password = "password is required.";
     setError(error);
+    return Object.keys(error).length === 0;
   };
   const handleSubmit = () => {
     console.log(form);
-    formValidation()
+
+    if (formValidation()) {
+      setForm({ userName: "", password: "" });
+    }
   };
 
   return (
@@ -191,7 +192,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10
   },
-  error:{
-    color:"red"
+  error: {
+    color: "red"
   }
 });
