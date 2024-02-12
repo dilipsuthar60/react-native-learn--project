@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet,SafeAreaView, ScrollView} from "react-native";
 import Greet from "./components/Greet";
+import pokemonList from './data.json'
 const logoImage = require("./assets/adaptive-icon.png");
 export default function App() {
   const charmanderData = {
@@ -45,6 +46,14 @@ export default function App() {
       <Greet {...squirtleData}/>
       <Greet {...pikachuData}/>
       <Greet {...bulbasaurData}/>
+      {
+        pokemonList.map((item)=>{
+          return <View style={styles.list}>
+            <Text>{item.name}</Text>
+            <Text>{item.type}</Text>
+          </View>
+        })
+      }
     </SafeAreaView>
     </ScrollView>
   );
@@ -55,5 +64,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f5f5f5",
     paddingTop:25
+  },
+  list:{
+    backgroundColor:"white",
+    borderWidth:2,
+    borderColor:"black",
+    borderStyle:"solid",
+    margin:10,
+    padding:8,
+    borderRadius: 10,
+    flex:1,
+    flexDirection:"row",
+    justifyContent:"space-around"
   }
 });
