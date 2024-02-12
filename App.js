@@ -5,12 +5,15 @@ import {
   StyleSheet,
   SafeAreaView,
   ScrollView,
-  Pressable
+  Pressable,
+  FlatList,
+  TextInput
 } from "react-native";
 import Greet from "./components/Greet";
 import pokemonList from "./data.json";
 const logoImage = require("./assets/adaptive-icon.png");
 export default function App() {
+  const [name, setName] = useState("");
   const charmanderData = {
     name: "Charmander",
     image: require("./assets/charmander.png"),
@@ -49,28 +52,50 @@ export default function App() {
   return (
     <ScrollView>
       <SafeAreaView style={styles.container}>
+        <TextInput
+          style={{
+            margin: 20,
+            borderColor: "black",
+            borderWidth: 2,
+            borderStyle: "solid",
+            padding: 5,
+            borderRadius:10
+          }}
+          placeholder="Enter the Name"
+          defaultValue={name}
+          onChangeText={text => {
+            setName(text);
+          }}
+          secureTextEntry
+        />
+        <Text style={{margin:10}}>
+          My Name is {name.toUpperCase()}
+        </Text>
         <Greet {...charmanderData} />
         <Greet {...squirtleData} />
         <Greet {...pikachuData} />
         <Greet {...bulbasaurData} />
-        {pokemonList.map(item => {
-          return (
-            <Pressable
-              onPress={() => {
-                console.log(item);
-              }}
-            >
-              <View key={item.id} style={styles.list}>
-                <Text style={styles.itemName}>
-                  {item.name}
-                </Text>
-                <Text style={styles.itemType}>
-                  {item.type}
-                </Text>
-              </View>
-            </Pressable>
-          );
-        })}
+        <FlatList
+          data={pokemonList}
+          renderItem={({ item }) => {
+            return (
+              <Pressable
+                onPress={() => {
+                  console.log(item);
+                }}
+              >
+                <View key={item.id} style={styles.list}>
+                  <Text style={styles.itemName}>
+                    {item.name}
+                  </Text>
+                  <Text style={styles.itemType}>
+                    {item.type}
+                  </Text>
+                </View>
+              </Pressable>
+            );
+          }}
+        />
       </SafeAreaView>
     </ScrollView>
   );
