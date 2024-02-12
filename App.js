@@ -1,33 +1,41 @@
 import React, { useState } from "react";
-import {
-  StatusBar,
-  ActivityIndicator,
-  Text,
-  View,
-  Button,
-  Modal,
-  Alert
-} from "react-native";
+import { Text, View, StyleSheet,SafeAreaView, ScrollView} from "react-native";
 import Greet from "./components/Greet";
 const logoImage = require("./assets/adaptive-icon.png");
 export default function App() {
+  const charmanderData = {
+    name: "Charmander",
+    image: require("./assets/charmander.png"),
+    type: "Fire",
+    hp: 39,
+    moves: ["Scratch", "Ember", "Growl", "Leer"],
+    weaknesses: ["Water", "Rock"],
+  };
+  const charmanderData1 = {
+    name: "Charmander",
+    image: require("./assets/bulbasaur.png"),
+    type: "Fire",
+    hp: 39,
+    moves: ["Scratch", "Ember", "Growl", "Leer"],
+    weaknesses: ["Water", "Rock"],
+  };
   return (
-    <View
-      style={{
-        backgroundColor: "plum",
-        paddingTop: 50,
-        borderWidth: 6,
-        borderStyle: "solid",
-        borderColor: "blue",
-        height:300,
-        marginTop:50
-      }}
-    >
-      <Greet style={{ backgroundColor: "red", margin: 10 }} children={"box1"} />
-      <Greet
-        style={{ backgroundColor: "blue", margin: 10 }}
-        children={"box2"}
-      />
-    </View>
+    <ScrollView>
+    <SafeAreaView style={styles.container}>
+      <Greet {...charmanderData}/>
+      <Greet {...charmanderData1}/>
+      <Greet {...charmanderData}/>
+      <Greet {...charmanderData}/>
+      <Greet {...charmanderData}/>
+    </SafeAreaView>
+    </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f5f5f5",
+    paddingTop:25
+  }
+});
