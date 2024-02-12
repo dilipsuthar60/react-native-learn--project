@@ -52,25 +52,12 @@ export default function App() {
   return (
     <ScrollView>
       <SafeAreaView style={styles.container}>
-        <TextInput
-          style={{
-            margin: 20,
-            borderColor: "black",
-            borderWidth: 2,
-            borderStyle: "solid",
-            padding: 5,
-            borderRadius:10
-          }}
-          placeholder="Enter the Name"
-          defaultValue={name}
-          onChangeText={text => {
-            setName(text);
-          }}
-          secureTextEntry
-        />
-        <Text style={{margin:10}}>
-          My Name is {name.toUpperCase()}
-        </Text>
+        <View style={styles.form}>
+          <Text style={styles.label} >Username</Text>
+          <TextInput style={styles.input} placeholder="Enter your Username"/>
+          <Text style={styles.label}>Password</Text>
+          <TextInput style={styles.input} placeholder="Enter your Password"  secureTextEntry/>
+        </View>
         <Greet {...charmanderData} />
         <Greet {...squirtleData} />
         <Greet {...pikachuData} />
@@ -125,5 +112,30 @@ const styles = StyleSheet.create({
   },
   itemType: {
     fontSize: 16
+  },
+  form:{
+    backgroundColor:"white",
+    padding:20,
+    borderRadius:10,
+    margin:20,
+    shadowColor:"black",
+    shadowOffset:{
+      width:0,
+      height:2
+    },
+    elevation:5
+  },
+  label:{
+    fontSize:16,
+    marginBottom:5,
+    fontWeight:"bold"
+  },
+  input:{
+    height:50,
+    borderColor:"black",
+    borderWidth:1,
+    marginBottom: 10,
+    borderRadius: 5,
+    padding:10
   }
 });
