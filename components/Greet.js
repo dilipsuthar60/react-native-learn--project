@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet, TextInput } from "react-native";
 
 export default function Greet({ name }) {
   const [text, setText] = useState(name);
@@ -21,6 +21,22 @@ export default function Greet({ name }) {
       <View style={[styles.box, styles.box2]}>
         <Text>box2</Text>
       </View>
+      <TextInput
+        defaultValue={text}
+        style={{
+          borderWidth: 1,
+          borderColor: "gray",
+          borderStyle: "solid",
+          padding: 3,
+          margin: 10,
+          borderRadius: 10,
+          fontSize:15
+        }}
+        placeholder="Enter the value"
+        onChangeText={newText => {
+          setText(newText);
+        }}
+      />
     </View>
   );
 }
@@ -29,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: "pink",
     borderWidth: 2,
     borderColor: "purple",
-    borderStyle: "solid",
+    borderStyle: "solid"
   },
   box: {
     height: "25%",
