@@ -18,10 +18,7 @@ export default function App() {
     userName: "",
     password: ""
   });
-  const [error, setError] = useState({
-    userName: "",
-    password: ""
-  });
+  const [error, setError] = useState({});
   const charmanderData = {
     name: "Charmander",
     image: require("./assets/charmander.png"),
@@ -69,6 +66,7 @@ export default function App() {
 
     if (formValidation()) {
       setForm({ userName: "", password: "" });
+      setError({});
     }
   };
 
@@ -185,10 +183,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   input: {
-    height: 50,
+    height:45,
     borderColor: "gray",
     borderWidth: 1.5,
-    marginBottom: 5,
+    marginBottom: 8,
     borderRadius: 5,
     padding: 10
   },
