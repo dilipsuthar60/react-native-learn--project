@@ -4,6 +4,8 @@ import Login from "./screens/LoginScreen/Login";
 import { StatusBar } from "expo-status-bar";
 import * as SecureStore from "expo-secure-store";
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
+import { NavigationContainer } from "@react-navigation/native";
+import TabNavigation from "./Navigations/TabNavigation";
 const tokenCache = {
   async getToken(key) {
     try {
@@ -25,7 +27,9 @@ function App() {
   return (
     <ClerkProvider tokenCache={tokenCache} publishableKey="pk_test_aG9seS1sYW1iLTkyLmNsZXJrLmFjY291bnRzLmRldiQ">
       <SignedIn>
-        <Text>You are Signed iyn</Text>
+        <NavigationContainer>
+          <TabNavigation/>
+        </NavigationContainer>
       </SignedIn>
       <SignedOut>
         <Login />
