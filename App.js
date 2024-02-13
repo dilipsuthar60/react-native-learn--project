@@ -14,7 +14,11 @@ import {
 import Greet from "./components/Greet";
 import pokemonList from "./data.json";
 import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreens from "./screens/HomeScreens";
+import AboutScreens from "./screens/AboutScreens";
 const logoImage = require("./assets/adaptive-icon.png");
+const Stack = createStackNavigator();
 export default function App() {
   const [form, setForm] = useState({
     userName: "",
@@ -75,7 +79,11 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <ScrollView>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreens} />
+        <Stack.Screen name="About" component={AboutScreens} />
+      </Stack.Navigator>
+      {/* <ScrollView>
         <SafeAreaView style={styles.container}>
           <View style={styles.form}>
             <Text style={styles.label}>Username</Text>
@@ -141,7 +149,7 @@ export default function App() {
             }}
           />
         </SafeAreaView>
-      </ScrollView>
+      </ScrollView> */}
     </NavigationContainer>
   );
 }
