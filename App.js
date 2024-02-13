@@ -4,13 +4,11 @@ import {
   View,
   StyleSheet,
 } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
-import Mystack from "./MyStack";
 export default function App() {
   return (
-    <NavigationContainer>
-      <Mystack/>
-    </NavigationContainer>
+    <View style={{flex:1,backgroundColor:"red",justifyContent:"center",alignItems:"center"}}>
+      <Text>hello world.......</Text>
+    </View>
   );
 }
 
