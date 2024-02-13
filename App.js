@@ -191,6 +191,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   error: {
-    color: "red"
+    color: "red",
+    marginBottom: 5
   }
 });
