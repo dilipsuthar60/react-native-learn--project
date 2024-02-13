@@ -80,7 +80,15 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreens} />
+        <Stack.Screen name="Home" component={HomeScreens}
+        options={{
+          title:"Welcome Home Page",
+          headerStyle:{
+            backgroundColor:"plum"
+          },
+          headerTitleStyle:{fontWeight:"bold"}
+        }}
+        />
         <Stack.Screen name="About" component={AboutScreens} />
       </Stack.Navigator>
       {/* <ScrollView>
