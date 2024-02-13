@@ -1,9 +1,7 @@
-//import liraries
 import { useNavigation } from '@react-navigation/native';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
-// create a component
 const AboutScreens = ({route}) => {
     const navigation =useNavigation()
     const {name}=route.params
@@ -17,7 +15,6 @@ const AboutScreens = ({route}) => {
     );
 };
 
-// define your styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -27,5 +24,4 @@ const styles = StyleSheet.create({
     },
 });
 
-//make this component available to the app
 export default AboutScreens;
