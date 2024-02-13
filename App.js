@@ -8,10 +8,12 @@ import {
   Pressable,
   FlatList,
   TextInput,
-  Button
+  Button,
+  ToastAndroid
 } from "react-native";
 import Greet from "./components/Greet";
 import pokemonList from "./data.json";
+import { NavigationContainer } from "@react-navigation/native";
 const logoImage = require("./assets/adaptive-icon.png");
 export default function App() {
   const [form, setForm] = useState({
@@ -61,6 +63,7 @@ export default function App() {
     setError(error);
     return Object.keys(error).length === 0;
   };
+
   const handleSubmit = () => {
     console.log(form);
 
@@ -71,72 +74,75 @@ export default function App() {
   };
 
   return (
-    <ScrollView>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.form}>
-          <Text style={styles.label}>Username</Text>
-          <TextInput
-            value={form.userName}
-            style={styles.input}
-            placeholder="Enter your Username"
-            onChangeText={text => {
-              setForm({ ...form, userName: text });
+    <NavigationContainer>
+      <ScrollView>
+        <SafeAreaView style={styles.container}>
+          <View style={styles.form}>
+            <Text style={styles.label}>Username</Text>
+            <TextInput
+              value={form.userName}
+              style={styles.input}
+              placeholder="Enter your Username"
+              onChangeText={text => {
+                setForm({ ...form, userName: text });
+              }}
+            />
+            {error.userName
+              ? <Text style={styles.error}>
+                  {error.userName}
+                </Text>
+              : null}
+            <Text style={styles.label}>Password</Text>
+            <TextInput
+              value={form.password}
+              style={styles.input}
+              placeholder="Enter your Password"
+              secureTextEntry
+              onChangeText={text => {
+                setForm({ ...form, password: text });
+              }}
+            />
+            {error.password
+              ? <Text style={styles.error}>
+                  {error.password}
+                </Text>
+              : null}
+            <Button
+              title="Login"
+              onPress={() => {
+                handleSubmit();
+              }}
+            />
+          </View>
+          <Greet {...charmanderData} />
+          <Greet {...squirtleData} />
+          <Greet {...pikachuData} />
+          <Greet {...bulbasaurData} />
+          <FlatList
+            data={pokemonList}
+            renderItem={({ item }) => {
+              return (
+                <Pressable
+                  onPress={() => {
+                    console.log(item);
+                  }}
+                  style={styles.listing}
+                >
+                  <View key={item.id} style={styles.list}>
+                    <Text style={styles.itemName}>
+                      {item.name}
+                    </Text>
+                    <Text style={styles.itemType}>
+                      {item.type}
+                    </Text>
+                  </View>
+                </Pressable>
+              );
             }}
           />
-          {error.userName
-            ? <Text style={styles.error}>
-                {error.userName}
-              </Text>
-            : null}
-          <Text style={styles.label}>Password</Text>
-          <TextInput
-            value={form.password}
-            style={styles.input}
-            placeholder="Enter your Password"
-            secureTextEntry
-            onChangeText={text => {
-              setForm({ ...form, password: text });
-            }}
-          />
-          {error.password
-            ? <Text style={styles.error}>
-                {error.password}
-              </Text>
-            : null}
-          <Button
-            title="Login"
-            onPress={() => {
-              handleSubmit();
-            }}
-          />
-        </View>
-        <Greet {...charmanderData} />
-        <Greet {...squirtleData} />
-        <Greet {...pikachuData} />
-        <Greet {...bulbasaurData} />
-        <FlatList
-          data={pokemonList}
-          renderItem={({ item }) => {
-            return (
-              <Pressable
-                onPress={() => {
-                  console.log(item);
-                }}
-              >
-                <View key={item.id} style={styles.list}>
-                  <Text style={styles.itemName}>
-                    {item.name}
-                  </Text>
-                  <Text style={styles.itemType}>
-                    {item.type}
-                  </Text>
-                </View>
-              </Pressable>
-            );
-          }}
-        />
-      </SafeAreaView>
-    </ScrollView>
+        </SafeAreaView>
+      </ScrollView>
+    </NavigationContainer>
   );
 }
 
@@ -170,12 +176,7 @@ const styles = StyleSheet.create({
     padding: 18,
     borderRadius: 10,
     margin: 20,
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    elevation: 5
+    elevation: 10
   },
   label: {
     fontSize: 16,
@@ -183,7 +184,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   input: {
-    height:45,
+    height: 45,
     borderColor: "gray",
     borderWidth: 1.5,
     marginBottom: 8,
@@ -193,5 +194,8 @@ const styles = StyleSheet.create({
   error: {
     color: "red",
     marginBottom: 5
+  },
+  listing: {
+    marginHorizontal: 10
   }
 });
