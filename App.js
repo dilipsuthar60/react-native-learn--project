@@ -3,19 +3,14 @@ import {
   Text,
   View,
   StyleSheet,
-  SafeAreaView,
-  ScrollView,
-  Pressable,
-  FlatList,
-  TextInput,
-  Button,
-  ToastAndroid
 } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
+import Mystack from "./MyStack";
 export default function App() {
   return (
-    <View style={{margin:60}}>
-      <Text>hello</Text>
-    </View>
+    <NavigationContainer>
+      <Mystack/>
+    </NavigationContainer>
   );
 }
 
