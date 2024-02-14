@@ -37,7 +37,7 @@ const Login = () => {
     <View style={styles.container}>
       <Image
         style={styles.image}
-        source={require("../../assets/login_home_service.jpg")}
+        source={require("../../assets/login.png")}
       />
       <View style={styles.suncontainer}>
         <Text style={{ fontSize: 25, color: "white", textAlign: "center" }}>
@@ -63,7 +63,7 @@ const Login = () => {
                 color: Colors.PRIMARY
               }}
             >
-              Let's Get Started..........
+              Let's Get Started.
             </Text>
           </View>
         </TouchableOpacity>
