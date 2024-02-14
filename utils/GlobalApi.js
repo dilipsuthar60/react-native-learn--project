@@ -63,10 +63,13 @@ const getBusinessList = async () => {
   return data;
 };
 
-const getBusinessCategoryList = async () => {
-  const businessQuery = gql`
+const getBusinessCategoryList = async category => {
+  const businessQuery =
+    gql`
     query businessQuery {
-      businessLists(where: { category: { name: "Clearing" } }) {
+      businessLists(where: { category: { name: "` +
+    category +
+    `" } }) {
         id
         name
         address
@@ -89,4 +92,9 @@ const getBusinessCategoryList = async () => {
   return data;
 };
 
-export default { getSlider, getCategory, getBusinessList,getBusinessCategoryList };
+export default {
+  getSlider,
+  getCategory,
+  getBusinessList,
+  getBusinessCategoryList
+};

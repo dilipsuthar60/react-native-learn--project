@@ -7,11 +7,21 @@ export default function BusinessListItem({ item }) {
     <View style={styles.contanier}>
       <Image
         style={styles.image}
-        source={{ uri: item?.image[Math.floor(Math.random() * 3)].url }}
+        source={{ uri: item?.image[Math.floor(Math.random() * 3)]?.url }}
       />
       <View>
         <Text style={{ fontSize: 16, fontWeight: "500" }}>{item?.name}</Text>
-        <Text style={{marginTop:3,fontSize:12, color: Colors.PRIMARY, backgroundColor: "#D6A2E8" ,padding:3,alignSelf:"flex-start",borderRadius:7}}>
+        <Text
+          style={{
+            marginTop: 3,
+            fontSize: 12,
+            color: Colors.PRIMARY,
+            backgroundColor: "#D6A2E8",
+            padding: 3,
+            alignSelf: "flex-start",
+            borderRadius: 7
+          }}
+        >
           {item?.category?.name}
         </Text>
       </View>

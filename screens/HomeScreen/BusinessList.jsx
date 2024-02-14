@@ -16,7 +16,7 @@ export default function BusinessList() {
   }, []);
 
   return (
-    <View style={{ marginTop: 10 }}>
+    <View style={{ marginTop: 25 }}>
       <Heading text={"latest Business"} />
       <FlatList
       horizontal={true}
@@ -24,7 +24,7 @@ export default function BusinessList() {
       data={businessListData}
         renderItem={({ item, index }) => {
           return (
-            <View style={{marginRight:10,marginTop:10}} >
+            <View key={item.id} style={{marginRight:10,marginTop:15}} >
               <BusinessListItem item={item}/>
             </View>
           );
