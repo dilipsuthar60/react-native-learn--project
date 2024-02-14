@@ -25,7 +25,7 @@ export default function TabNavigation() {
             <Text style={{ color: color, fontSize: 12 }}>Home</Text>
           ),
           tabBarIcon: ({ color, size }) => (
-            <AntDesign name="home" size={size} color={color} />
+            <Entypo name="home" size={size} color={color} />
           )
         }}
       />

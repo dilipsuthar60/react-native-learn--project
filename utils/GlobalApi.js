@@ -36,4 +36,57 @@ const getCategory = async () => {
   );
   return data;
 };
-export default { getSlider, getCategory };
+
+const getBusinessList = async () => {
+  const businessQuery = gql`
+    query businessQuery {
+      businessLists {
+        id
+        name
+        address
+        about
+        email
+        contant
+        category {
+          name
+        }
+        image {
+          url
+        }
+      }
+    }
+  `;
+  const data = await request(
+    "https://api-ap-south-1.hygraph.com/v2/clsleamvs47l801wjf780xujx/master",
+    businessQuery
+  );
+  return data;
+};
+
+const getBusinessCategoryList = async () => {
+  const businessQuery = gql`
+    query businessQuery {
+      businessLists(where: { category: { name: "Clearing" } }) {
+        id
+        name
+        address
+        about
+        email
+        contant
+        category {
+          name
+        }
+        image {
+          url
+        }
+      }
+    }
+  `;
+  const data = await request(
+    "https://api-ap-south-1.hygraph.com/v2/clsleamvs47l801wjf780xujx/master",
+    businessQuery
+  );
+  return data;
+};
+
+export default { getSlider, getCategory, getBusinessList,getBusinessCategoryList };
