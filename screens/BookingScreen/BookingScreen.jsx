@@ -3,8 +3,8 @@ import React from 'react'
 
 export default function BookingScreen() {
   return (
-    <View>
-      <Text>BookingScreen</Text>
+    <View style={{padding:25}}>
+      <Text style={{fontSize:18,fontWeight:"700"}}>My Booking</Text>
     </View>
   )
 }
