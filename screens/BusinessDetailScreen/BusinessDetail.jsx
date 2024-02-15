@@ -6,25 +6,27 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
-  Modal,
+  Modal
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
 import Colors from "../../utils/Colors";
 import Heading from "../../components/Heading";
+import BookingModal from "./BookingModal";
 
 export default function BusinessDetail() {
   const params = useRoute().params;
   const [detail, setDetail] = useState(params?.detail);
   const [isReadMore, setIsReadMore] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
   useEffect(() => {
     console.log(detail);
   }, []);
   return (
     <View>
-      <ScrollView style={{height:"92%"}}>
+      <ScrollView style={{ height: "92%" }}>
         <View style={styles.container}>
           <TouchableOpacity
             style={styles.backButton}
@@ -127,15 +129,34 @@ export default function BusinessDetail() {
           </View>
         </View>
       </ScrollView>
-      <View style={{display:"flex",flexDirection:"row",margin:5,gap:5}}>
+      <View
+        style={{ display: "flex", flexDirection: "row", margin: 5, gap: 5 }}
+      >
         <TouchableOpacity style={styles.messageButton}>
-            <Text style={{textAlign:"center",color:Colors.PRIMARY,fontSize:16}}>Message</Text>
+          <Text
+            style={{ textAlign: "center", color: Colors.PRIMARY, fontSize: 16 }}
+          >
+            Message
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.bookingButton}>
-            <Text style={{textAlign:"center",color:"white",fontSize:16}}>Booking</Text>
+        <TouchableOpacity
+          onPress={() => {
+            setShowModal(!showModal);
+          }}
+          style={styles.bookingButton}
+        >
+          <Text style={{ textAlign: "center", color: "white", fontSize: 16 }}>
+            Booking
+          </Text>
         </TouchableOpacity>
       </View>
-      <Modal></Modal>
+      <Modal visible={showModal} animationType="slide">
+        <BookingModal
+          showModal={() => {
+            setShowModal(false);
+          }}
+        />
+      </Modal>
     </View>
   );
 }
@@ -162,23 +183,23 @@ const styles = StyleSheet.create({
     gap: 20,
     alignItems: "center"
   },
-  messageButton:{
-    padding:10,
-    backgroundColor:"white",
-    borderRadius:100,
-    alignItems:"center",
-    borderWidth:1.5,
-    borderColor:Colors.PRIMARY,
-    flex:1
+  messageButton: {
+    padding: 10,
+    backgroundColor: "white",
+    borderRadius: 100,
+    alignItems: "center",
+    borderWidth: 1.5,
+    borderColor: Colors.PRIMARY,
+    flex: 1
   },
-  bookingButton:{
-    padding:10,
-    backgroundColor:"white",
-    borderRadius:100,
-    alignItems:"center",
-    borderWidth:1.5,
-    borderColor:Colors.PRIMARY,
-    backgroundColor:Colors.PRIMARY,
-    flex:1
+  bookingButton: {
+    padding: 10,
+    backgroundColor: "white",
+    borderRadius: 100,
+    alignItems: "center",
+    borderWidth: 1.5,
+    borderColor: Colors.PRIMARY,
+    backgroundColor: Colors.PRIMARY,
+    flex: 1
   }
 });
