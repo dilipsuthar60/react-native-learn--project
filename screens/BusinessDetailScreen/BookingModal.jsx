@@ -13,17 +13,23 @@ import Heading from "../../components/Heading";
 
 export default function BookingModal({ hiddenModal }) {
   const [timeList, setTimeList] = useState([]);
+  const [selectedTime, setSelectedTime] = useState();
 
   const getTime = () => {
     const timeList = [];
     for (let i = 8; i <= 12; i++) {
-      timeList.push({ time: i + " :00 AM" });
+      if (i == 12) {
+        timeList.push({ time: i + ":00 PM" });
+      } else {
+        timeList.push({ time: i + ":00 AM" });
+      }
     }
     for (let i = 1; i <= 7; i++) {
-      timeList.push({ time: i + " :00 PM" });
+      timeList.push({ time: i + ":00 PM" });
     }
     setTimeList(timeList);
   };
+
   useEffect(() => {
     getTime();
   }, []);
@@ -63,8 +69,20 @@ export default function BookingModal({ hiddenModal }) {
           data={timeList}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity>
-                <Text style={styles.unSelectedTime}>{item.time}</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  setSelectedTime(item.time);
+                }}
+              >
+                <Text
+                  style={[
+                    selectedTime == item.time
+                      ? styles.selectedTime
+                      : styles.unSelectedTime
+                  ]}
+                >
+                  {item.time}
+                </Text>
               </TouchableOpacity>
             );
           }}
