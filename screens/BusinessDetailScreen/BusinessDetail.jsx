@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
+  Modal,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -134,6 +135,7 @@ export default function BusinessDetail() {
             <Text style={{textAlign:"center",color:"white",fontSize:16}}>Booking</Text>
         </TouchableOpacity>
       </View>
+      <Modal></Modal>
     </View>
   );
 }
