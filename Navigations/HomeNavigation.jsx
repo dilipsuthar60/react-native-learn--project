@@ -3,7 +3,9 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/HomeScreen/HomeScreen";
 import BusinessListByCategory from "../screens/BusinessListByCategoryScreen/BusinessListByCategory";
-const Stack = createStackNavigator();
+import BusinessDetail from "../screens/BusinessDetailScreen/BusinessDetail";
+
+const Stack = createStackNavigator(); // stack for navigation 
 
 export default function HomeNavigation() {
   return (
@@ -14,6 +16,7 @@ export default function HomeNavigation() {
     >
       <Stack.Screen name="home" component={HomeScreen} />
       <Stack.Screen name="business-list" component={BusinessListByCategory} />
+      <Stack.Screen name="business-detail" component={BusinessDetail}  />
     </Stack.Navigator>
   );
 }

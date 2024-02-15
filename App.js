@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Login from "./screens/LoginScreen/Login";
-import { StatusBar } from "expo-status-bar";
 import * as SecureStore from "expo-secure-store";
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import { NavigationContainer } from "@react-navigation/native";
