@@ -22,7 +22,7 @@ export default function BusinessDetail() {
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
   useEffect(() => {
-    console.log(detail);
+    console.log("=========== ",detail.id);
   }, []);
   return (
     <View>
@@ -155,6 +155,7 @@ export default function BusinessDetail() {
           hiddenModal={() => {
             setShowModal(false);
           }}
+          businessId={detail.id}
         />
       </Modal>
     </View>

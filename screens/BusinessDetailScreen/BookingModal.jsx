@@ -3,19 +3,27 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  FlatList
+  FlatList,
+  ToastAndroid
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import CalendarPicker from "react-native-calendar-picker";
 import Colors from "../../utils/Colors";
 import Heading from "../../components/Heading";
+import GlobalApi from "../../utils/GlobalApi";
+import { useUser } from "@clerk/clerk-expo";
+import moment from "moment";
 
-export default function BookingModal({ hiddenModal }) {
+export default function BookingModal({ hiddenModal, businessId }) {
+  const { user } = useUser();
   const [timeList, setTimeList] = useState([]);
-  const [selectedTime, setSelectedTime] = useState();
-  const [selectedDate, setSelectedDate] = useState();
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
 
+  const onDateChange = (date) => {
+    setSelectedDate(date);
+  };
   const getTime = () => {
     const timeList = [];
     for (let i = 8; i <= 12; i++) {
@@ -29,6 +37,24 @@ export default function BookingModal({ hiddenModal }) {
       timeList.push({ time: i + ":00 PM" });
     }
     setTimeList(timeList);
+  };
+
+  const createBooking = async () => {
+    if (!selectedDate || !selectedTime) {
+      ToastAndroid.show("Please Select Time and Date", ToastAndroid.LONG);
+      return;
+    }
+    const data = {
+      name: user?.fullName,
+      email: user?.primaryEmailAddress.emailAddress,
+      time: selectedTime,
+      date:moment(selectedDate).format('DD-MM-YYYY'),
+      business: businessId
+    };
+    console.log(data);
+    const response = await GlobalApi.createBooking(data);
+    ToastAndroid.show("Booking Created Successfully", ToastAndroid.LONG);
+    hiddenModal();
   };
 
   useEffect(() => {
@@ -53,7 +79,7 @@ export default function BookingModal({ hiddenModal }) {
       <Heading text={"Select Date"} />
       <View style={styles.calendarContainer}>
         <CalendarPicker
-          onDateChange={selectedDate}
+          onDateChange={onDateChange}
           width={350}
           minDate={Date.now()}
           todayBackgroundColor={"black"}
@@ -89,7 +115,7 @@ export default function BookingModal({ hiddenModal }) {
           }}
         />
       </View>
-      <TouchableOpacity onPress={()=>{hiddenModal()}}>
+      <TouchableOpacity onPress={() => createBooking()}>
         <Text style={styles.confromButton}>Confirm Booking</Text>
       </TouchableOpacity>
     </View>
@@ -97,22 +123,24 @@ export default function BookingModal({ hiddenModal }) {
 }
 
 const styles = StyleSheet.create({
-  confromButton:{
-    backgroundColor:Colors.PRIMARY,
-    color:"white",
-    padding:12,
-    borderRadius:100,
-    textAlign:"center",
-    marginVertical:10,
-    fontSize:16,
-    fontWeight:"500"
+  confromButton: {
+    backgroundColor: Colors.PRIMARY,
+    color: "white",
+    padding: 12,
+    borderRadius: 100,
+    textAlign: "center",
+    marginVertical: 10,
+    fontSize: 16,
+    fontWeight: "500"
   },
   calendarContainer: {
     marginTop: 10,
     width: 350,
-    backgroundColor: "#FDA7DF",
+    backgroundColor: "#f5f6fa",
     borderRadius: 20,
-    padding: 10
+    padding: 10,
+    borderWidth:1,
+    elevation:7,
   },
   unSelectedTime: {
     borderRadius: 20,
