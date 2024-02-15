@@ -141,7 +141,7 @@ export default function BusinessDetail() {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            setShowModal(!showModal);
+            setShowModal(true);
           }}
           style={styles.bookingButton}
         >
@@ -152,7 +152,7 @@ export default function BusinessDetail() {
       </View>
       <Modal visible={showModal} animationType="slide">
         <BookingModal
-          showModal={() => {
+          hiddenModal={() => {
             setShowModal(false);
           }}
         />
