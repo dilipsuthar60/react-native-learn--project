@@ -89,8 +89,8 @@ export default function BookingModal({ hiddenModal }) {
           }}
         />
       </View>
-      <TouchableOpacity>
-        <Text style={styles.confromButton}>Confrom & Booking</Text>
+      <TouchableOpacity onPress={()=>{hiddenModal()}}>
+        <Text style={styles.confromButton}>Confirm Booking</Text>
       </TouchableOpacity>
     </View>
   );
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor:Colors.PRIMARY,
     color:"white",
     padding:12,
-    borderRadius:20,
+    borderRadius:100,
     textAlign:"center",
     marginVertical:10,
     fontSize:16,

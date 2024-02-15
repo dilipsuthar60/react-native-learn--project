@@ -132,13 +132,13 @@ export default function BusinessDetail() {
       <View
         style={{ display: "flex", flexDirection: "row", margin: 5, gap: 5 }}
       >
-        <TouchableOpacity style={styles.messageButton}>
+        {/* <TouchableOpacity style={styles.messageButton}>
           <Text
             style={{ textAlign: "center", color: Colors.PRIMARY, fontSize: 16 }}
           >
             Message
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => {
             setShowModal(true);
@@ -146,7 +146,7 @@ export default function BusinessDetail() {
           style={styles.bookingButton}
         >
           <Text style={{ textAlign: "center", color: "white", fontSize: 16 }}>
-            Booking
+            Book
           </Text>
         </TouchableOpacity>
       </View>
