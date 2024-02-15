@@ -14,6 +14,7 @@ import Heading from "../../components/Heading";
 export default function BookingModal({ hiddenModal }) {
   const [timeList, setTimeList] = useState([]);
   const [selectedTime, setSelectedTime] = useState();
+  const [selectedDate, setSelectedDate] = useState();
 
   const getTime = () => {
     const timeList = [];
@@ -52,7 +53,7 @@ export default function BookingModal({ hiddenModal }) {
       <Heading text={"Select Date"} />
       <View style={styles.calendarContainer}>
         <CalendarPicker
-          // onDateChange={selectedStartDate}
+          onDateChange={selectedDate}
           width={350}
           minDate={Date.now()}
           todayBackgroundColor={"black"}
@@ -88,11 +89,24 @@ export default function BookingModal({ hiddenModal }) {
           }}
         />
       </View>
+      <TouchableOpacity>
+        <Text style={styles.confromButton}>Confrom & Booking</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  confromButton:{
+    backgroundColor:Colors.PRIMARY,
+    color:"white",
+    padding:12,
+    borderRadius:20,
+    textAlign:"center",
+    marginVertical:10,
+    fontSize:16,
+    fontWeight:"500"
+  },
   calendarContainer: {
     marginTop: 10,
     width: 350,
