@@ -92,9 +92,36 @@ const getBusinessCategoryList = async category => {
   return data;
 };
 
+const createBooking = async () => {
+  const mutationQuery = gql`
+    mutation createBooking {
+      createBooking(
+        data: {
+          progress: booking
+          businessList: { connect: { id: "" } }
+          date: ""
+          email: ""
+          name: ""
+          time: ""
+        }
+      ) {
+        id
+      }
+      publishManyBookings
+    }
+  `;
+
+  const data = await request(
+    "https://api-ap-south-1.hygraph.com/v2/clsleamvs47l801wjf780xujx/master",
+    mutationQuery
+  );
+  return data;
+};
+
 export default {
   getSlider,
   getCategory,
   getBusinessList,
-  getBusinessCategoryList
+  getBusinessCategoryList,
+  createBooking
 };
