@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, FlatList } from "react-native
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
-import GlobalApi from "../../../utils/GlobalApi";
+import GlobalApi from "../../utils/GlobalApi";
 import BusinessItem from "./BusinessItem";
 
 export default function BusinessListByCategory() {

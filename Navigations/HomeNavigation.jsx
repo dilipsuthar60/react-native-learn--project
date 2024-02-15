@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/HomeScreen/HomeScreen";
-import BusinessListByCategory from "../screens/HomeScreen/BusinessListByCategoryScreen/BusinessListByCategory";
+import BusinessListByCategory from "../screens/BusinessListByCategoryScreen/BusinessListByCategory";
 const Stack = createStackNavigator();
 
 export default function HomeNavigation() {
