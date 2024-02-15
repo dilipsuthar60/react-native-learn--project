@@ -93,17 +93,27 @@ const getBusinessCategoryList = async category => {
 };
 
 const createBooking = async data => {
-  console.log(data);
-  const mutationQuery = gql`
+  const mutationQuery =
+    gql`
     mutation createBooking {
       createBooking(
         data: {
           progress: booking
-          businessList: { connect: { id: "`+data.business+`" } }
-          date: "`+data.date+`"
-          email: "`+data.email+`"
-          name: "`+data.name+`"
-          time: "`+data.time+`"
+          businessList: { connect: { id: "` +
+    data.business +
+    `" } }
+          date: "` +
+    data.date +
+    `"
+          email: "` +
+    data.email +
+    `"
+          name: "` +
+    data.name +
+    `"
+          time: "` +
+    data.time +
+    `"
         }
       ) {
         id
@@ -121,10 +131,43 @@ const createBooking = async data => {
   return response;
 };
 
+const getUserBooking = async () => {
+  const query = gql`
+    query getUserBooking {
+      bookings(orderBy: publishedAt_DESC) {
+        name
+        id
+        date
+        email
+        time
+        progress
+        businessList {
+          id
+          image {
+            url
+          }
+          name
+          address
+          contant
+          email
+          about
+        }
+      }
+    }
+  `;
+
+  const data = await request(
+    "https://api-ap-south-1.hygraph.com/v2/clsleamvs47l801wjf780xujx/master",
+    query
+  );
+  return data;
+};
+
 export default {
   getSlider,
   getCategory,
   getBusinessList,
   getBusinessCategoryList,
-  createBooking
+  createBooking,
+  getUserBooking
 };
