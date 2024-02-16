@@ -1,21 +1,50 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import Colors from "../../utils/Colors";
+import { AntDesign } from "@expo/vector-icons";
 
-export default function BusinessItem({ item }) {
+export default function BusinessItem({
+  time = null,
+  progress = null,
+  date = null,
+  item
+}) {
   const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.push("business-detail", { detail: item });
+        navigation.navigate("business-detail", { detail: item });
       }}
       style={styles.container}
     >
       <Image style={styles.image} source={{ uri: item?.image[0]?.url }} />
       <View style={styles.subcontainer}>
-        <Text style={{ fontSize: 16, color: "gray" }}>{item.name}</Text>
-        <Text style={{ fontSize: 18, fontWeight: "500" }}>{item.address}</Text>
-        <Text style={{ fontSize: 16, color: "gray" }}>{item.contant}</Text>
+        <Text style={{ fontSize: 20, fontWeight: "600" }}>{item?.name}</Text>
+        <Text style={{ fontSize: 16, color: "#747d8c" }}>{item?.address}</Text>
+        {progress && (
+          <Text
+            style={{
+              fontSize: 15,
+              color: Colors.PRIMARY,
+              backgroundColor: "#D6A2E8",
+              padding: 5,
+              alignSelf: "flex-start",
+              borderRadius: 10
+            }}
+          >
+            {progress}
+          </Text>
+        )}
+        <View style={styles.timeInformation}>
+          {date && <AntDesign name="calendar" size={24} color={Colors.PRIMARY} />}
+          {date && <Text>{date}</Text>}
+          {time && <Text>{time}</Text>}
+        </View>
+        <Text style={{ fontSize: 14, color: "#7f8c8d" }}>
+          contact : {item?.contant}
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -34,11 +63,17 @@ const styles = StyleSheet.create({
   },
   subcontainer: {
     display: "flex",
-    gap: 5
+    gap: 3
   },
   image: {
     width: 150,
-    height: 100,
-    borderRadius: 15
+    height: 120,
+    borderRadius: 15,
+  },
+  timeInformation: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 7
   }
 });

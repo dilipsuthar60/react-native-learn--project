@@ -21,9 +21,6 @@ export default function BusinessDetail() {
   const [isReadMore, setIsReadMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
-  useEffect(() => {
-    console.log("=========== ",detail.id);
-  }, []);
   return (
     <View>
       <ScrollView style={{ height: "92%" }}>
@@ -39,7 +36,7 @@ export default function BusinessDetail() {
           <Image style={styles.image} source={{ uri: detail?.image[0]?.url }} />
           <View style={styles.information}>
             <Text style={{ fontSize: 21, fontWeight: "bold" }}>
-              {detail?.name}
+              {detail.name}
             </Text>
             <View style={styles.subInformation}>
               <Text style={{ color: Colors.PRIMARY, fontSize: 18 }}>
@@ -56,7 +53,7 @@ export default function BusinessDetail() {
                   borderRadius: 7
                 }}
               >
-                {detail?.category?.name}
+                {detail?.category?.name||detail.name}
               </Text>
             </View>
             <Text>{detail?.address}</Text>

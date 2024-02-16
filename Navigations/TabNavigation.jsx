@@ -5,8 +5,8 @@ import HomeScreen from "../screens/HomeScreen/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen/ProfileScreen";
 import BookingScreen from "../screens/BookingScreen/BookingScreen";
 import { Entypo } from "@expo/vector-icons";
-import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from "@expo/vector-icons";
+import { FontAwesome } from '@expo/vector-icons';
 import Colors from "../utils/Colors";
 import HomeNavigation from "./HomeNavigation";
 
@@ -48,10 +48,10 @@ export default function TabNavigation() {
         component={ProfileScreen}
         options={{
           tabBarLabel: ({ color }) => (
-            <Text style={{ color: color, fontSize: 12 }}>Profile</Text>
+            <Text style={{ color: color, fontSize: 12,fontWeight:"bold" }}>Profile</Text>
           ),
           tabBarIcon: ({ color, size }) => (
-            <AntDesign name="profile" size={size} color={color} />
+            <FontAwesome name="user" size={size} color={color} />
           )
         }}
       />

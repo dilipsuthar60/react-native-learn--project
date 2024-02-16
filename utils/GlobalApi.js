@@ -63,13 +63,11 @@ const getBusinessList = async () => {
   return data;
 };
 
-const getBusinessCategoryList = async category => {
+const getBusinessCategoryList = async (category) => {
   const businessQuery =
     gql`
     query businessQuery {
-      businessLists(where: { category: { name: "` +
-    category +
-    `" } }) {
+      businessLists(where: { category: { name: "`+category +`" } }) {
         id
         name
         address
@@ -92,28 +90,18 @@ const getBusinessCategoryList = async category => {
   return data;
 };
 
-const createBooking = async data => {
-  const mutationQuery =
-    gql`
+const createBooking = async (data) => {
+  console.log(data);
+  const mutationQuery = gql`
     mutation createBooking {
       createBooking(
         data: {
           progress: booking
-          businessList: { connect: { id: "` +
-    data.business +
-    `" } }
-          date: "` +
-    data.date +
-    `"
-          email: "` +
-    data.email +
-    `"
-          name: "` +
-    data.name +
-    `"
-          time: "` +
-    data.time +
-    `"
+          businessList: { connect: { id: "`+data.business+`" } }
+          date: "`+data.date+`"
+          email: "`+data.email+`"
+          name: "`+data.name+`"
+          time: "`+data.time+`"
         }
       ) {
         id
@@ -131,30 +119,31 @@ const createBooking = async data => {
   return response;
 };
 
-const getUserBooking = async () => {
-  const query = gql`
-    query getUserBooking {
-      bookings(orderBy: publishedAt_DESC) {
-        name
+const getUserBooking = async (email) => {
+  const query = gql`query getUserBooking {
+    bookings(
+      orderBy: publishedAt_DESC
+      where: {email: "`+email+`"}
+    ) {
+      name
+      id
+      date
+      email
+      time
+      progress
+      businessList {
         id
-        date
-        email
-        time
-        progress
-        businessList {
-          id
-          image {
-            url
-          }
-          name
-          address
-          contant
-          email
-          about
+        image {
+          url
         }
+        name
+        address
+        contant
+        email
+        about
       }
     }
-  `;
+  }`;
 
   const data = await request(
     "https://api-ap-south-1.hygraph.com/v2/clsleamvs47l801wjf780xujx/master",
