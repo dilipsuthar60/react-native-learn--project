@@ -17,7 +17,7 @@ export default function BusinessList() {
 
   return (
     <View style={{ marginTop: 25 }}>
-      <Heading text={"latest Business"} />
+      <Heading text={"Latest Business"} />
       <FlatList
       horizontal={true}
       showsHorizontalScrollIndicator={false}

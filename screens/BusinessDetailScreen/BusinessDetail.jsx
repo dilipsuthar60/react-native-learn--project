@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
-  Modal
+  Modal,
+  Linking
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -21,6 +22,13 @@ export default function BusinessDetail() {
   const [isReadMore, setIsReadMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
+  const handleMessageButton = () => {
+    Linking.openURL(
+      "mailto:" +
+        detail?.email +
+        "?subject= I am Looking for you Service &Body =Hi There"
+    );
+  };
   return (
     <View>
       <ScrollView style={{ height: "92%" }}>
@@ -53,7 +61,7 @@ export default function BusinessDetail() {
                   borderRadius: 7
                 }}
               >
-                {detail?.category?.name||detail.name}
+                {detail?.category?.name || detail.name}
               </Text>
             </View>
             <Text>{detail?.address}</Text>
@@ -129,13 +137,18 @@ export default function BusinessDetail() {
       <View
         style={{ display: "flex", flexDirection: "row", margin: 5, gap: 5 }}
       >
-        {/* <TouchableOpacity style={styles.messageButton}>
+        <TouchableOpacity
+          style={styles.messageButton}
+          onPress={() => {
+            handleMessageButton();
+          }}
+        >
           <Text
             style={{ textAlign: "center", color: Colors.PRIMARY, fontSize: 16 }}
           >
             Message
           </Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             setShowModal(true);

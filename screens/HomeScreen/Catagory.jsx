@@ -27,7 +27,7 @@ export default function Catagory() {
           return (
             <TouchableOpacity onPress={()=>{
                 navigation.push("business-list",{category:item?.name})
-            }} style={styles.contanier}>
+            }} style={styles.contanier} key={item.id}>
               <View style={styles.iconContanier}>
                 <Image
                   style={{ height: 40, width: 40 }}
