@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import Colors from "../../utils/Colors";
@@ -11,8 +11,8 @@ export default function BusinessItem({
   item
 }) {
   const navigation = useNavigation();
-
   return (
+    <ScrollView>
     <TouchableOpacity
       onPress={() => {
         navigation.navigate("business-detail", { detail: item });
@@ -38,7 +38,9 @@ export default function BusinessItem({
           </Text>
         )}
         <View style={styles.timeInformation}>
-          {date && <AntDesign name="calendar" size={24} color={Colors.PRIMARY} />}
+          {date && (
+            <AntDesign name="calendar" size={24} color={Colors.PRIMARY} />
+          )}
           {date && <Text>{date}</Text>}
           {time && <Text>{time}</Text>}
         </View>
@@ -47,6 +49,7 @@ export default function BusinessItem({
         </Text>
       </View>
     </TouchableOpacity>
+    </ScrollView>
   );
 }
 
@@ -68,7 +71,7 @@ const styles = StyleSheet.create({
   image: {
     width: 150,
     height: 120,
-    borderRadius: 15,
+    borderRadius: 15
   },
   timeInformation: {
     display: "flex",

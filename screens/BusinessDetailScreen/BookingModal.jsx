@@ -19,7 +19,7 @@ export default function BookingModal({ hiddenModal, businessId }) {
   const { user } = useUser();
   const [timeList, setTimeList] = useState([]);
   const [selectedTime, setSelectedTime] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(Date.now());
 
   const onDateChange = (date) => {
     setSelectedDate(date);
