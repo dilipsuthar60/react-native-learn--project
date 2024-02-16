@@ -16,7 +16,7 @@ export default function BookingScreen() {
     );
     setIsLoading(false);
     setBookingList(data?.bookings);
-    console.log("======",data?.bookings)
+    console.log("======", data?.bookings);
   };
   useEffect(() => {
     getUserBookingData();

@@ -26,7 +26,7 @@ export default function BusinessItem({
         {progress && (
           <Text
             style={{
-              fontSize: 15,
+              fontSize: 16,
               color: Colors.PRIMARY,
               backgroundColor: "#D6A2E8",
               padding: 5,
