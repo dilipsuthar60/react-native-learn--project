@@ -31,10 +31,10 @@ export default function Catagory() {
         LisHeaderComponent={<View style={{ flex: 1 }}></View>}
         data={categoryData}
         numColumns={4}
+        keyExtractor={item=>item.id}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
-              key={item.id}
               onPress={() => {
                 navigation.push("business-list", { category: item?.name });
               }}

@@ -82,9 +82,10 @@ export default function ProfileScreen() {
         <FlatList
           LisHeaderComponent={<View style={{ flex: 1 }}></View>}
           data={profileMenu}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity key={item.id}
+              <TouchableOpacity
                 onPress={() => {
                   item.id !== 3
                     ? navigation.navigate(item.navigate)
