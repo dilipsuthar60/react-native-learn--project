@@ -4,11 +4,10 @@ import {
   Image,
   StyleSheet,
   TextInput,
-  Button,
   TouchableOpacity
 } from "react-native";
 import React from "react";
-import { useClerk, useUser, useAuth } from "@clerk/clerk-expo";
+import { useUser} from "@clerk/clerk-expo";
 import Colors from "../../utils/Colors";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
