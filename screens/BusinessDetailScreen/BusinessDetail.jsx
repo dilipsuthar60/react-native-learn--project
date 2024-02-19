@@ -118,18 +118,19 @@ export default function BusinessDetail() {
               keyExtractor={(item, index) => item.image + index.toString()}
               renderItem={({ item }) => {
                 return (
-                  <Image
-                    style={{
-                      flex: 1,
-                      height: 120,
-                      width: "100%",
-                      borderRadius: 10,
-                      margin: 5
-                    }}
-                    source={{ uri: item?.url }}
-                  />
+                  <View style={{ flex: 1, margin: 5 }} key={item.id}>
+                    <Image
+                      style={{
+                        height: 120,
+                        width: "100%",
+                        borderRadius: 10
+                      }}
+                      source={{ uri: item?.url }}
+                    />
+                  </View>
                 );
               }}
+              ListFooterComponent={<View style={{ flex: 1 }}></View>}
             />
           </View>
         </View>

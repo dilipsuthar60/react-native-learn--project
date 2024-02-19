@@ -31,7 +31,7 @@ export default function Catagory() {
         LisHeaderComponent={<View style={{ flex: 1 }}></View>}
         data={categoryData}
         numColumns={4}
-        renderItem={({ item, index }) => {
+        renderItem={({ item }) => {
           return (
             <TouchableOpacity
               key={item.id}

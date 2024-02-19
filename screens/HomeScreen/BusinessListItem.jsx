@@ -4,7 +4,7 @@ import Colors from "../../utils/Colors";
 
 export default function BusinessListItem({ item }) {
   return (
-    <View style={styles.contanier}>
+    <View style={styles.contanier} key={item.id}>
       <Image
         style={styles.image}
         source={{ uri: item?.image[Math.floor(Math.random() * 3)]?.url }}

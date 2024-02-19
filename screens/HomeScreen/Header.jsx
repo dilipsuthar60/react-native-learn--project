@@ -1,12 +1,21 @@
-import { View, Text, Image, StyleSheet, TextInput, Button } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TextInput,
+  Button,
+  TouchableOpacity
+} from "react-native";
 import React from "react";
 import { useClerk, useUser, useAuth } from "@clerk/clerk-expo";
 import Colors from "../../utils/Colors";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 export default function Header() {
   const { user, isLoading } = useUser();
-  const { isLoaded, signOut } = useAuth();
+  const navigation = useNavigation();
   return (
     user && (
       <View style={styles.container}>
@@ -20,7 +29,13 @@ export default function Header() {
               </Text>
             </View>
           </View>
-          <FontAwesome5  name="bookmark" size={24} color="white" />
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("booking");
+            }}
+          >
+            <FontAwesome5 name="bookmark" size={24} color="white" />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.searchContainer}>
@@ -40,7 +55,7 @@ export default function Header() {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    paddingBottom:15,
+    paddingBottom: 15,
     backgroundColor: Colors.PRIMARY,
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30
