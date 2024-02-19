@@ -84,7 +84,7 @@ export default function ProfileScreen() {
           data={profileMenu}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity
+              <TouchableOpacity key={item.id}
                 onPress={() => {
                   item.id !== 3
                     ? navigation.navigate(item.navigate)

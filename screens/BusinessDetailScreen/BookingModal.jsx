@@ -101,6 +101,7 @@ export default function BookingModal({ hiddenModal, businessId }) {
                 onPress={() => {
                   setSelectedTime(item.time);
                 }}
+                key={key.id}
               >
                 <Text
                   style={[

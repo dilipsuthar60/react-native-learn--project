@@ -34,11 +34,11 @@ export default function Catagory() {
         renderItem={({ item, index }) => {
           return (
             <TouchableOpacity
+              key={item.id}
               onPress={() => {
                 navigation.push("business-list", { category: item?.name });
               }}
               style={styles.contanier}
-              key={item.id}
             >
               <View style={styles.iconContanier}>
                 <Image
