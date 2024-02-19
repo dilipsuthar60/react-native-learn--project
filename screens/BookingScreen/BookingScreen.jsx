@@ -27,6 +27,7 @@ export default function BookingScreen() {
 
       <View>
         <FlatList
+          LisHeaderComponent={<View style={{ flex: 1 }}></View>}
           onRefresh={() => {
             getUserBookingData();
           }}
@@ -42,6 +43,7 @@ export default function BookingScreen() {
               />
             );
           }}
+          ListFooterComponent={<View style={{ flex: 1 }}></View>}
         />
       </View>
     </View>

@@ -14,7 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function ProfileScreen() {
   const { user } = useUser();
-  const { isLoaded,signOut } = useAuth();
+  const { isLoaded, signOut } = useAuth();
   const navigation = useNavigation();
   const profileMenu = [
     {
@@ -80,6 +80,7 @@ export default function ProfileScreen() {
       </View>
       <View style={{ marginTop: 100, marginHorizontal: 100 }}>
         <FlatList
+          LisHeaderComponent={<View style={{ flex: 1 }}></View>}
           data={profileMenu}
           renderItem={({ item }) => {
             return (
@@ -98,6 +99,7 @@ export default function ProfileScreen() {
               </TouchableOpacity>
             );
           }}
+          ListFooterComponent={<View style={{ flex: 1 }}></View>}
         />
       </View>
     </View>

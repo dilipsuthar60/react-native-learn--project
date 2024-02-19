@@ -19,6 +19,7 @@ export default function Slider() {
     <View style={styles.contanier}>
       <Heading text={"Latest offers for you"} />
       <FlatList
+        LisHeaderComponent={<View style={{ flex: 1 }}></View>}
         data={sliderData}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
@@ -32,6 +33,7 @@ export default function Slider() {
             </View>
           );
         }}
+        ListFooterComponent={<View style={{ flex: 1 }}></View>}
       />
     </View>
   );

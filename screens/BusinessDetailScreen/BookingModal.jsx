@@ -48,7 +48,7 @@ export default function BookingModal({ hiddenModal, businessId }) {
       name: user?.fullName,
       email: user?.primaryEmailAddress.emailAddress,
       time: selectedTime,
-      date:moment(selectedDate).format('DD-MM-YYYY'),
+      date: moment(selectedDate).format("DD-MM-YYYY"),
       business: businessId
     };
     console.log(data);
@@ -91,6 +91,7 @@ export default function BookingModal({ hiddenModal, businessId }) {
       <View style={{ marginTop: 20 }}>
         <Heading text={"Select Time Slot"} />
         <FlatList
+          LisHeaderComponent={<View style={{ flex: 1 }}></View>}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           data={timeList}
@@ -113,6 +114,7 @@ export default function BookingModal({ hiddenModal, businessId }) {
               </TouchableOpacity>
             );
           }}
+          ListFooterComponent={<View style={{ flex: 1 }}></View>}
         />
       </View>
       <TouchableOpacity onPress={() => createBooking()}>
@@ -139,8 +141,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f6fa",
     borderRadius: 20,
     padding: 10,
-    borderWidth:1,
-    elevation:7,
+    borderWidth: 1,
+    elevation: 7
   },
   unSelectedTime: {
     borderRadius: 20,

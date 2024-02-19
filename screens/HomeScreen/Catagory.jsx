@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Image,
+  TouchableOpacity
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import GlobalApi from "../../utils/GlobalApi";
 import Heading from "../../components/Heading";
@@ -21,13 +28,18 @@ export default function Catagory() {
     <View>
       <Heading text={"Category"} />
       <FlatList
+        LisHeaderComponent={<View style={{ flex: 1 }}></View>}
         data={categoryData}
         numColumns={4}
         renderItem={({ item, index }) => {
           return (
-            <TouchableOpacity onPress={()=>{
-                navigation.push("business-list",{category:item?.name})
-            }} style={styles.contanier} key={item.id}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.push("business-list", { category: item?.name });
+              }}
+              style={styles.contanier}
+              key={item.id}
+            >
               <View style={styles.iconContanier}>
                 <Image
                   style={{ height: 40, width: 40 }}
@@ -40,6 +52,7 @@ export default function Catagory() {
             </TouchableOpacity>
           );
         }}
+        ListFooterComponent={<View style={{ flex: 1 }}></View>}
       />
     </View>
   );
