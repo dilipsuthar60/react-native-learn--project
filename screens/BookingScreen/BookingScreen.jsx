@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import React, { useEffect, useState } from "react";
 import GlobalApi from "../../utils/GlobalApi";
 import { useUser } from "@clerk/clerk-expo";
@@ -16,7 +16,6 @@ export default function BookingScreen() {
     );
     setIsLoading(false);
     setBookingList(data?.bookings);
-    console.log("======", data?.bookings);
   };
   useEffect(() => {
     getUserBookingData();
@@ -26,25 +25,29 @@ export default function BookingScreen() {
       <Text style={{ fontSize: 24, fontWeight: "700" }}>My Booking</Text>
 
       <View>
-        <FlatList
-          LisHeaderComponent={<View style={{ flex: 1 }}></View>}
-          onRefresh={() => {
-            getUserBookingData();
-          }}
-          refreshing={isLoading}
-          data={bookingList}
-          renderItem={({ item }) => {
-            return (
-              <BusinessItem
-                time={item.time}
-                progress={item.progress}
-                date={item.date}
-                item={item?.businessList}
-              />
-            );
-          }}
-          ListFooterComponent={<View style={{ flex: 1 }}></View>}
-        />
+        {!bookingList.length ? (
+          <ActivityIndicator size="large" />
+        ) : (
+          <FlatList
+            LisHeaderComponent={<View style={{ flex: 1 }}></View>}
+            onRefresh={() => {
+              getUserBookingData();
+            }}
+            refreshing={isLoading}
+            data={bookingList}
+            renderItem={({ item }) => {
+              return (
+                <BusinessItem
+                  time={item.time}
+                  progress={item.progress}
+                  date={item.date}
+                  item={item?.businessList}
+                />
+              );
+            }}
+            ListFooterComponent={<View style={{ flex: 1 }}></View>}
+          />
+        )}
       </View>
     </View>
   );

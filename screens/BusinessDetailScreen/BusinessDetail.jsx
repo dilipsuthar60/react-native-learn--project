@@ -111,27 +111,19 @@ export default function BusinessDetail() {
               }}
             ></View>
             <Heading text={"Photo"} />
-
-            <FlatList
-              data={detail?.image}
-              numColumns={2}
-              keyExtractor={(item, index) => item.image + index.toString()}
-              renderItem={({ item }) => {
-                return (
-                  <View style={{ flex: 1, margin: 5 }} key={item.id}>
-                    <Image
-                      style={{
-                        height: 120,
-                        width: "100%",
-                        borderRadius: 10
-                      }}
-                      source={{ uri: item?.url }}
-                    />
-                  </View>
-                );
-              }}
-              ListFooterComponent={<View style={{ flex: 1 }}></View>}
-            />
+            {detail?.image.map((item, index) => {
+              return (
+                <Image
+                  key={index}
+                  style={{
+                    height: 200,
+                    borderRadius: 10,
+                    margin: 5
+                  }}
+                  source={{ uri: item?.url }}
+                />
+              );
+            })}
           </View>
         </View>
       </ScrollView>

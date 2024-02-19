@@ -20,7 +20,7 @@ export default function TabNavigation() {
       }}
     >
       <Tab.Screen
-        name="home"
+        name="Home"
         component={HomeNavigation}
         options={{
           tabBarLabel: ({ color }) => (
